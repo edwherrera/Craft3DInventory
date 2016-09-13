@@ -4,6 +4,7 @@ from exception import exception
 
 def main():
     printer_service = service.Printer()
+
     try:
         print(printer_service.get(model='Printe'))
     except exception.ObjectNotFoundException:

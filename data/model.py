@@ -7,6 +7,7 @@ db = SqliteDatabase('resources/craft3d_orders.db')
 
 class _BaseModel(Model):
     """Base class for all the Data Models"""
+
     class Meta:
         database = db
 

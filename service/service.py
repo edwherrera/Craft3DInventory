@@ -4,6 +4,7 @@ from service import model
 
 class _BaseService:
     """Base class for the Services"""
+
     def __init__(self, service_repository, service_model):
         """
     

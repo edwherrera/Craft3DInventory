@@ -6,6 +6,7 @@ from peewee import IntegrityError
 
 class _BaseRepository:
     """Base class for all repositories"""
+
     def __init__(self, object_model: model):
         """Initializes based on a specified data model
         
