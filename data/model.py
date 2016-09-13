@@ -26,7 +26,7 @@ class Material(_BaseModel):
 
 class Order(_BaseModel):
     """Data model for Order info"""
-    
+
     order_date = DateField()
     client_name = CharField(max_length=50)
     completed_date = DateField()
