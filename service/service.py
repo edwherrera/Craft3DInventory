@@ -1,5 +1,5 @@
 from data import repository
-from data import exception
+from exception import exception
 from service import model
 
 
@@ -22,29 +22,18 @@ class _BaseService:
         params: fields with their respective values with which the new object will be built
 
         """
-        try:
-            result = self.repository.create(**params)
-        except exception.ObjectAlreadyExistsException:
-            result = None
-        else:
-            result = self.model(result)
-
-        return result
+        return self.model(self.repository.create(**params))
 
     def get_all(self):
         """Invokes the get_all method for the stored repository"""
         return [self.model(data_model) for data_model in self.repository.get_all()]
 
     def get(self, **query):
-        """Invokes the get method in the stored repository. returns None if no item was found with the specified query"""
-        try:
-            result = self.repository.get(**query)
-        except exception.ObjectNotFoundException:
-            result = None
-        else:
-            result = self.model(result)
+        """Invokes the get method in the stored repository. raises an ObjectNotFoundException if no item was found 
+        with the specified query
 
-        return result
+        """
+        return self.model(self.repository.get(**query))
 
 
 class Printer(_BaseService):

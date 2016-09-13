@@ -1,5 +1,5 @@
 from data import model
-from data import exception
+from exception import exception
 
 from peewee import IntegrityError
 
