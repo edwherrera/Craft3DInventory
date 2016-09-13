@@ -14,7 +14,14 @@ class _BaseService:
         return [self.model(data_model) for data_model in self.repository.get_all()]
 
     def get(self, **query):
-        return self.model(self.repository.get(**query))
+        try:
+            result = self.repository.get(**query)
+        except self.repository.object_model.DoesNotExist:
+            result = None
+        else:
+            result = self.model()
+
+        return result
 
 
 class Printer(_BaseService):

@@ -9,7 +9,7 @@ class Printer:
         self.model = data_model.model
 
     def __str__(self):
-        return "model: {}".format(self.model)
+        return self.__dict__.__str__()
 
 
 class Material:
