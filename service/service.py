@@ -1,5 +1,4 @@
 from data import repository
-from exception import exception
 from service import model
 
 
