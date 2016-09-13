@@ -11,15 +11,13 @@ class Model:
         def __str__(self):
             return "model: {}".format(self.model)
 
-
     class Material:
         def __init__(self, data_model):
             self.name = data_model.name
 
-
     class Order:
         def __init__(self, data_model):
-            self.order_date = data_model.order_date 
+            self.order_date = data_model.order_date
             self.printer = Model.Printer(data_model.printer)
             self.material = Model.Material(data_model.material)
             self.client_name = data_model.client_name
@@ -56,18 +54,14 @@ class Service:
         def get(self, **query):
             return self.model(self.repository.get(**query))
 
-
     class Printer(_BaseService):
         def __init__(self):
             super().__init__(repository.Printer(), Model.Printer)
-
 
     class Material(_BaseService):
         def __init__(self):
             super().__init__(repository.Material(), Model.Material)
 
-
     class Order(_BaseService):
         def __init__(self):
             super().__init__(repository.Order(), Model.Order)
-            
