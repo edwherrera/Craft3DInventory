@@ -1,4 +1,3 @@
-import data.model
 import data.repository as repository
 from decimal import Decimal
 
