@@ -37,7 +37,6 @@ class Order(_BaseModel):
     paint_quote = DecimalField(decimal_places=2)
 
 
-
 if not os.path.exists("resources"):
     os.makedirs("resources")
 
