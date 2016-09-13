@@ -3,9 +3,9 @@ from service import model
 
 
 class _BaseService:
-    def __init__(self, service_repository, model):
+    def __init__(self, service_repository, service_model):
         self.repository = service_repository
-        self.model = model
+        self.model = service_model
 
     def create(self, **params):
         self.repository.create(**params)
