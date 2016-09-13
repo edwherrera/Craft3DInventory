@@ -1,3 +1,5 @@
+import os
+
 from peewee import *
 
 db = SqliteDatabase('resources/craft3d_orders.db')
@@ -25,11 +27,15 @@ class Order(_BaseModel):
     material = ForeignKeyField(Material, related_name='orders')
     grams = IntegerField()
     material_quote = DecimalField(decimal_places=2)
-    printing_time = FloatField()
+    printing_time = DecimalField(decimal_places=2)
     time_quote = DecimalField(decimal_places=2)
     energy_quote = DecimalField(decimal_places=2)
     paint_quote = DecimalField(decimal_places=2)
 
+
+
+if not os.path.exists("resources"):
+    os.makedirs("resources")
 
 db.connect()
 db.create_tables([Printer, Material, Order, ], safe=True)

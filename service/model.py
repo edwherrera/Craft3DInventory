@@ -1,5 +1,8 @@
 from decimal import Decimal
 
+TAX_PERCENTAGE = Decimal('0.15')
+LMP_TO_DOLALR_CONVERSION_RATE = Decimal('23.1')
+
 
 class Printer:
     def __init__(self, data_model):
@@ -29,10 +32,10 @@ class Order:
         self.energy_quote = data_model.energy_quote
         self.paint_quote = data_model.paint_quote
         self.total_quote = self.paint_quote + self.energy_quote + self.time_quote + self.material_quote
-        self.tax = self.total_quote * Decimal('0.15')
+        self.tax = self.total_quote * TAX_PERCENTAGE
         self.final_quote = self.total_quote + self.tax
-        self.income = self.total_quote - self.material_quote - self.energy_quote - Decimal(self.printing_time * 0.5)
-        self.lempiras = self.total_quote * Decimal('23.1')
+        self.income = self.total_quote - self.material_quote - self.energy_quote - (self.printing_time / 2)
+        self.lempiras = self.total_quote * LMP_TO_DOLALR_CONVERSION_RATE
 
     def __str__(self):
         return self.__dict__.__str__()
