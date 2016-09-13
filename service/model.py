@@ -1,7 +1,7 @@
 from decimal import Decimal
 
 TAX_PERCENTAGE = Decimal('0.15')
-LMP_TO_DOLALR_CONVERSION_RATE = Decimal('23.1')
+LMP_TO_DOLLAR_CONVERSION_RATE = Decimal('23.1')
 
 
 class Printer:
@@ -35,7 +35,7 @@ class Order:
         self.tax = self.total_quote * TAX_PERCENTAGE
         self.final_quote = self.total_quote + self.tax
         self.income = self.total_quote - self.material_quote - self.energy_quote - (self.printing_time / 2)
-        self.lempiras = self.total_quote * LMP_TO_DOLALR_CONVERSION_RATE
+        self.lempiras = self.total_quote * LMP_TO_DOLLAR_CONVERSION_RATE
 
     def __str__(self):
         return self.__dict__.__str__()

@@ -10,7 +10,6 @@ class _BaseService:
         :param service_repository: instance of the repository from which the service will get results
         :param service_model: Service Class type used to initialize the model return to the caller
         """
-
         self.repository = service_repository
         self.model = service_model
 
@@ -20,12 +19,10 @@ class _BaseService:
 
         :param params: fields with their respective values with which the new object will be built
         """
-
         return self.model(self.repository.create(**params))
 
     def get_all(self):
         """Invokes the get_all method for the stored repository"""
-
         return [self.model(data_model) for data_model in self.repository.get_all()]
 
     def get(self, **query):
@@ -34,7 +31,6 @@ class _BaseService:
 
         :param query: fields and values used in the search
         """
-
         return self.model(self.repository.get(**query))
 
 

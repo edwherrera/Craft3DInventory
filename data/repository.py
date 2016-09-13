@@ -12,7 +12,6 @@ class _BaseRepository:
         
         :param object_model: Data model the repository will use to handle queries
         """
-
         self.object_model = object_model
 
     def create(self, **values):
@@ -20,7 +19,6 @@ class _BaseRepository:
         
         :param values: fields and values with which the new object will be created
         """
-
         try:
             return self.object_model.create(**values)
         except IntegrityError:
@@ -28,7 +26,6 @@ class _BaseRepository:
 
     def get_all(self):
         """Returns a query with all the objects of the represented table"""
-
         return self.object_model.select()
 
     def get(self, **query):
@@ -36,7 +33,6 @@ class _BaseRepository:
 
         :param query: fields and values on which the search will be performed
         """
-
         try:
             return self.object_model.get(**query)
         except self.object_model.DoesNotExist:
