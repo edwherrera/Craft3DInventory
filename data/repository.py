@@ -12,7 +12,7 @@ class _BaseRepository:
         return self.object_model.select()
 
     def get(self, **query):
-        return self.get_all().get(**query)
+        return self.object_model.get(**query)
 
 
 class Printer(_BaseRepository):
@@ -28,6 +28,3 @@ class Material(_BaseRepository):
 class Order(_BaseRepository):
     def __init__(self):
         super().__init__(model.Order)
-
-    def get_all(self):
-        return self.object_model.select().join(model.Printer).switch(self.object_model).join(model.Material)
