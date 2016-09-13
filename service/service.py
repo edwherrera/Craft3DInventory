@@ -7,9 +7,9 @@ class _BaseService:
 
     def __init__(self, service_repository, service_model):
         """
-    
-        service_repository: instance of the repository from which the service will get results
-        service_model: Service Class type used to initialize the model return to the caller
+
+        :param service_repository: instance of the repository from which the service will get results
+        :param service_model: Service Class type used to initialize the model return to the caller
 
         """
         self.repository = service_repository
@@ -18,8 +18,8 @@ class _BaseService:
     def create(self, **params):
         """Invokes the create method on the stored repository with the specified values and returns the newly created object
         or None if the object creation was not valid
-        
-        params: fields with their respective values with which the new object will be built
+
+        :param params: fields with their respective values with which the new object will be built
 
         """
         return self.model(self.repository.create(**params))
@@ -31,6 +31,8 @@ class _BaseService:
     def get(self, **query):
         """Invokes the get method in the stored repository. raises an ObjectNotFoundException if no item was found 
         with the specified query
+
+        :param query: fields and values used in the search
 
         """
         return self.model(self.repository.get(**query))

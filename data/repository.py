@@ -10,7 +10,7 @@ class _BaseRepository:
     def __init__(self, object_model: model):
         """Initializes based on a specified data model
         
-        object_model: Data model the repository will use to handle queries
+        :param object_model: Data model the repository will use to handle queries
 
         """
         self.object_model = object_model
@@ -18,7 +18,7 @@ class _BaseRepository:
     def create(self, **values):
         """Creates and returns a new object of the related Data Model with the specified values
         
-        values: fields and values with which the new object will be created
+        :param values: fields and values with which the new object will be created
 
         """
         try:
@@ -33,7 +33,7 @@ class _BaseRepository:
     def get(self, **query):
         """Returns a query search for the first object that matches the specifies query fields and values
 
-        query: fields and values on which the search will be performed
+        :param query: fields and values on which the search will be performed
 
         """
         try:
