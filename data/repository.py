@@ -1,4 +1,4 @@
-import data.model as model
+from data import model
 
 
 class _BaseRepository:

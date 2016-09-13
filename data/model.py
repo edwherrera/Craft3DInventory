@@ -23,7 +23,7 @@ class Order(_BaseModel):
     file_name = CharField(max_length=20)
     printer = ForeignKeyField(Printer, related_name='orders')
     material = ForeignKeyField(Material, related_name='orders')
-    grams = IntegerField(default=None)
+    grams = IntegerField()
     material_quote = DecimalField(decimal_places=2)
     printing_time = FloatField()
     time_quote = DecimalField(decimal_places=2)
