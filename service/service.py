@@ -1,4 +1,5 @@
 from data import repository
+from data import exception
 from service import model
 
 
@@ -15,25 +16,33 @@ class _BaseService:
         self.model = service_model
 
     def create(self, **params):
-        """Invokes the create method on the stored repository with the specified values
+        """Invokes the create method on the stored repository with the specified values and returns the newly created object
+        or None if the object creation was not valid
         
         params: fields with their respective values with which the new object will be built
 
         """
-        self.repository.create(**params)
+        try:
+            result = self.repository.create(**params)
+        except exception.ObjectAlreadyExistsException:
+            result = None
+        else:
+            result = self.model(result)
+
+        return result
 
     def get_all(self):
         """Invokes the get_all method for the stored repository"""
         return [self.model(data_model) for data_model in self.repository.get_all()]
 
     def get(self, **query):
-        """Invokes the get method in the stored repository. returns None if no item was found" with the specified query"""
+        """Invokes the get method in the stored repository. returns None if no item was found with the specified query"""
         try:
             result = self.repository.get(**query)
-        except self.repository.object_model.DoesNotExist:
+        except exception.ObjectNotFoundException:
             result = None
         else:
-            result = self.model()
+            result = self.model(result)
 
         return result
 

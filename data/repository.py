@@ -1,4 +1,7 @@
 from data import model
+from data import exception
+
+from peewee import IntegrityError
 
 
 class _BaseRepository:
@@ -12,12 +15,15 @@ class _BaseRepository:
         self.object_model = object_model
 
     def create(self, **values):
-        """Creates a new object of the related Data Model with the specified values
+        """Creates and returns a new object of the related Data Model with the specified values
         
         values: fields and values with which the new object will be created
 
         """
-        self.object_model.create(**values)
+        try:
+            return self.object_model.create(**values)
+        except IntegrityError:
+            raise exception.ObjectAlreadyExistsException()
 
     def get_all(self):
         """Returns a query with all the objects of the represented table"""
@@ -29,7 +35,10 @@ class _BaseRepository:
         query: fields and values on which the search will be performed
 
         """
-        return self.object_model.get(**query)
+        try:
+            return self.object_model.get(**query)
+        except self.object_model.DoesNotExist:
+            raise exception.ObjectNotFoundException()
 
 
 class Printer(_BaseRepository):
